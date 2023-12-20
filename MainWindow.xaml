@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="SearchAlgorithms.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchAlgorithms"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid
+        Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--DFS-->
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Row="0"
+            Grid.Column="0">
+            <TextBlock Text="DFS" Foreground="Black"/>
+            <GridView SelectionMode="None" x:Name="DFSGrid">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid x:Name="DFSWrapGrid"
+                           MaximumRowsOrColumns="5"
+                           Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+        </StackPanel>
+
+        <!--BFS-->
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Row="0"
+            Grid.Column="1">
+            <TextBlock Text="BFS" Foreground="Black"/>
+            <GridView SelectionMode="None" x:Name="BFSGrid">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid x:Name="BFSWrapGrid"
+                           MaximumRowsOrColumns="5"
+                           Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+        </StackPanel>
+
+        <!--Greedy-->
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Row="1"
+            Grid.Column="0">
+            <TextBlock Text="Greedy Best" Foreground="Black"/>
+            <GridView SelectionMode="None" x:Name="GreedyGrid">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid x:Name="GreedyWrapGrid"
+                               MaximumRowsOrColumns="5"
+                               Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+        </StackPanel>
+
+        <!--A*-->
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Row="1"
+            Grid.Column="1">
+            <TextBlock Text="A*" Foreground="Black"/>
+            <GridView SelectionMode="None" x:Name="AGrid">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid x:Name="AWrapGrid"
+                            MaximumRowsOrColumns="5"
+                            Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+
+                <DataTemplate>
+                    <Rectangle Height="30" Width="30" Fill="Aqua" />
+                </DataTemplate>
+            </GridView>
+        </StackPanel>
+    </Grid>
+</Window>

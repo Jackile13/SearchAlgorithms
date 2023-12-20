@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SearchAlgorithms (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SearchAlgorithms (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
