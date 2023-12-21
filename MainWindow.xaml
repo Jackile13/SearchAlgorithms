@@ -7,89 +7,129 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Title="Search Algorithms"
     >
-
-    <Grid
-        Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
+        <Button HorizontalAlignment="Center" Margin="10" Click="Start">Start</Button>
+        
+        <ScrollView Grid.Row="1">
+            <Grid Background="White" Margin="5" ColumnSpacing="10">
+                <Grid.Resources>
+                    <DataTemplate x:Name="TileTemplate" x:DataType="x:String">
+                        <Rectangle Width="44" Height="44" Margin="0" Fill="{Binding}"/>
+                    </DataTemplate>
+                    <Style x:Key="TileStyle" TargetType="GridViewItem">
+                        <Setter Property="Margin" Value="0 0 0 0"/>
+                        <Setter Property="Padding" Value="0 0 0 0"/>
+                    </Style>
+                    <x:Int32 x:Key="NumCols">12</x:Int32>
+                    <x:Double x:Key="TileSize">44</x:Double>
+                </Grid.Resources>
 
-        <!--DFS-->
-        <StackPanel
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--DFS-->
+                <StackPanel
             Orientation="Vertical"
             Grid.Row="0"
             Grid.Column="0">
-            <TextBlock Text="DFS" Foreground="Black"/>
-            <GridView SelectionMode="None" x:Name="DFSGrid">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid x:Name="DFSWrapGrid"
-                           MaximumRowsOrColumns="5"
+                    <TextBlock Text="DFS" Foreground="Black"/>
+                    <GridView 
+                SelectionMode="None" 
+                x:Name="DFSGrid"
+                ItemsSource="{x:Bind DFSTiles}"
+                ItemTemplate="{StaticResource TileTemplate}"
+                ItemContainerStyle="{StaticResource TileStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid x:Name="DFSWrapGrid" ItemWidth="{StaticResource TileSize}" ItemHeight="{StaticResource TileSize}"
+                                       MaximumRowsOrColumns="{StaticResource NumCols}"
                            Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-        </StackPanel>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </StackPanel>
 
-        <!--BFS-->
-        <StackPanel
+                <!--BFS-->
+                <StackPanel
             Orientation="Vertical"
             Grid.Row="0"
             Grid.Column="1">
-            <TextBlock Text="BFS" Foreground="Black"/>
-            <GridView SelectionMode="None" x:Name="BFSGrid">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid x:Name="BFSWrapGrid"
-                           MaximumRowsOrColumns="5"
+                    <TextBlock 
+                Text="BFS" 
+                Foreground="Black"/>
+                    <GridView 
+                SelectionMode="None" 
+                x:Name="BFSGrid"
+                ItemsSource="{x:Bind BFSTiles}"
+                ItemTemplate="{StaticResource TileTemplate}"
+                ItemContainerStyle="{StaticResource TileStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid x:Name="BFSWrapGrid" ItemWidth="{StaticResource TileSize}" ItemHeight="{StaticResource TileSize}"
+                                       MaximumRowsOrColumns="{StaticResource NumCols}"
                            Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-        </StackPanel>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </StackPanel>
 
-        <!--Greedy-->
-        <StackPanel
+                <!--Greedy-->
+                <StackPanel
             Orientation="Vertical"
             Grid.Row="1"
             Grid.Column="0">
-            <TextBlock Text="Greedy Best" Foreground="Black"/>
-            <GridView SelectionMode="None" x:Name="GreedyGrid">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid x:Name="GreedyWrapGrid"
-                               MaximumRowsOrColumns="5"
+                    <TextBlock Text="Greedy Best" Foreground="Black"/>
+                    <GridView 
+                SelectionMode="None" 
+                x:Name="GreedyGrid"
+                ItemsSource="{x:Bind GreedyTiles}"
+                ItemTemplate="{StaticResource TileTemplate}"
+                ItemContainerStyle="{StaticResource TileStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid x:Name="GreedyWrapGrid" ItemWidth="{StaticResource TileSize}" ItemHeight="{StaticResource TileSize}"
+                                       MaximumRowsOrColumns="{StaticResource NumCols}"
                                Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-        </StackPanel>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </StackPanel>
 
-        <!--A*-->
-        <StackPanel
+                <!--A*-->
+                <StackPanel
             Orientation="Vertical"
             Grid.Row="1"
             Grid.Column="1">
-            <TextBlock Text="A*" Foreground="Black"/>
-            <GridView SelectionMode="None" x:Name="AGrid">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid x:Name="AWrapGrid"
-                            MaximumRowsOrColumns="5"
-                            Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-
-                <DataTemplate>
-                    <Rectangle Height="30" Width="30" Fill="Aqua" />
-                </DataTemplate>
-            </GridView>
-        </StackPanel>
+                    <TextBlock Text="A*" Foreground="Black"/>
+                    <GridView 
+                SelectionMode="None" 
+                x:Name="AGrid"
+                ItemsSource="{x:Bind ATiles}"
+                ItemTemplate="{StaticResource TileTemplate}"
+                ItemContainerStyle="{StaticResource TileStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid x:Name="AWrapGrid" ItemWidth="{StaticResource TileSize}" ItemHeight="{StaticResource TileSize}"
+                                       MaximumRowsOrColumns="{StaticResource NumCols}"
+                                       Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </StackPanel>
+            </Grid>
+        </ScrollView>
     </Grid>
 </Window>
